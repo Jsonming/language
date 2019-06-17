@@ -23,14 +23,16 @@ class LanguagePipeline(object):
 
         # 连mysql接数据库
         self.connect = pymysql.connect(
-            # host='127.0.0.1',  # 数据库地址
-            host='123.56.11.156',  # 数据库地址
+            # host='123.56.11.156',  # 数据库地址
+            # user='sjtUser',  # 数据库用户名
+            # passwd='sjtUser!1234',  # 数据库密码
+
+            host='127.0.0.1',  # 数据库地址
+            user='root',  # 数据库用户名
+            passwd='123456',  # 数据库密码
+
             port=3306,  # 数据库端口
             db='malaysia',  # 数据库名
-            user='sjtUser',  # 数据库用户名
-            passwd='sjtUser!1234',  # 数据库密码
-            # user='root',  # 数据库用户名
-            # passwd='123456',  # 数据库密码
             charset='utf8',  # 编码方式
             use_unicode=True)
         # 通过cursor执行增删查改
