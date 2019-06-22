@@ -9,7 +9,6 @@ xlrd==1.2.0
 azure==4.0.0
 you-get==0.4.1270
 nltk==3.4
-pywin32==224
 PyExecJS==1.5.1
 konlpy== 0.5.1
 polyglot==16.7.4
