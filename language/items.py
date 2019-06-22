@@ -59,3 +59,4 @@ class ImgLink(scrapy.Item):
 
 class NewsLink(scrapy.Item):
     url = scrapy.Field()
+    ori_url = scrapy.Field()

@@ -18,7 +18,7 @@ from .items import NewsLinkItem, NewsContentItem, TradeName, SongName, MovieName
 class LanguagePipeline(object):
     def __init__(self):
         # 创建redis数据库连接
-        pool = redis.ConnectionPool(host='123.56.11.156', port=6379, db=0, password='')
+        pool = redis.ConnectionPool(host='47.105.132.57', port=6379, db=0, password='')
         self.r = redis.Redis(connection_pool=pool)
 
         # 连mysql接数据库
@@ -119,14 +119,17 @@ class LanguagePipeline(object):
                 with open('{}\{}.jpg'.format(folder, md5_url), 'wb') as f:
                     f.write(content)
         elif isinstance(item, NewsLink):
-            db_name = 'fingerprint'
-            md5_url = self.md5_(item['url'])
-            sta = self.hash_exist(db_name, md5_url)
-            if not sta:
-                self.hash_(db_name, md5_url)
-                self.r.lpush('vietnam_news_link', item['url'])
+            if not item.get("url"):
+                self.r.lpush("vietnam_news_link_error", item["ori_url"])
             else:
-                print("指纹重复")
+                db_name = 'fingerprint'
+                md5_url = self.md5_(item['url'])
+                sta = self.hash_exist(db_name, md5_url)
+                if not sta:
+                    self.hash_(db_name, md5_url)
+                    self.r.lpush('vietnam_news_link', item['url'])
+                else:
+                    print("指纹重复")
         else:
             pass
 
