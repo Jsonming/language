@@ -30,8 +30,8 @@ class LanguagePipeline(object):
 
             host='127.0.0.1',  # 数据库地址
             user='root',  # 数据库用户名
-            passwd='123456',  # 数据库密码
-            db='malaysia',  # 数据库名
+            passwd='Yang_123_456',  # 数据库密码
+            db='spiderframe',  # 数据库名
 
 
             port=3306,  # 数据库端口
