@@ -8,8 +8,8 @@ class VietnamNewsNhandanSpider(scrapy.Spider):
     name = 'vietnam_news_nhandan'
     allowed_domains = ['www.nhandan.org.vn']
     start_urls = [
-        # 'http://www.nhandan.org.vn/chinhtri'
-        # 'https://www.nhandan.org.vn/kinhte?p=1924',
+        'http://www.nhandan.org.vn/chinhtri'
+        # 'https://www.nhandan.org.vn/kinhte?p=2300',
         # "http://www.nhandan.org.vn/vanhoa",
         # "http://www.nhandan.org.vn/xahoi",
         # "https://www.nhandan.org.vn/phapluat?p=2255",
@@ -20,7 +20,7 @@ class VietnamNewsNhandanSpider(scrapy.Spider):
         # "http://www.nhandan.org.vn/y-te",
         # "http://www.nhandan.org.vn/khoahoc-congnghe",
         # "http://www.nhandan.org.vn/bandoc",
-        "http://www.nhandan.org.vn/hanoi",    #  这是一个特殊的列表
+        # "https://www.nhandan.org.vn/hanoi",    #  这是一个特殊的列表
         # "http://www.nhandan.org.vn/tphcm",    # 跟上一个一样是一个特殊的列表
     ]
 

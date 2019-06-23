@@ -10,6 +10,8 @@ import os
 import pymysql.cursors
 import redis
 import requests
+from pymongo import MongoClient
+
 
 from .items import IndonesiaNewsContentItem, ShortWordLink, ImgLink, NewsLink
 from .items import NewsLinkItem, NewsContentItem, TradeName, SongName, MovieName, KoreanNewsContentItem
@@ -21,6 +23,9 @@ class LanguagePipeline(object):
         pool = redis.ConnectionPool(host='47.105.132.57', port=6379, db=0, password='')
         self.r = redis.Redis(connection_pool=pool)
 
+        # 创建mongodb库连接
+        self.client = MongoClient("47.105.132.57:27017")
+
         # 连mysql接数据库
         self.connect = pymysql.connect(
             # host='123.56.11.156',  # 数据库地址
@@ -28,7 +33,7 @@ class LanguagePipeline(object):
             # passwd='sjtUser!1234',  # 数据库密码
             # db='malaysia',  # 数据库名
 
-            host='127.0.0.1',  # 数据库地址
+            host='47.105.132.57',  # 数据库地址
             user='root',  # 数据库用户名
             passwd='Yang_123_456',  # 数据库密码
             db='spiderframe',  # 数据库名
@@ -55,11 +60,15 @@ class LanguagePipeline(object):
                 print("指纹重复")
         elif isinstance(item, NewsContentItem):
             if item['content']:
-                self.cursor.execute("""insert into vietnam_news_nhandan_content(url, content) value (%s, %s)""",
-                                    (item['url'], item['content']))
-                self.connect.commit()
+                # self.cursor.execute("""insert into vietnam_news_nhandan_content(url, content) value (%s, %s)""",
+                #                     (item['url'], item['content']))
+                # self.connect.commit()
+                url_id = self.md5_(item['url'])
+                item["id"] = url_id
+                self.client.vietnam.vietnam_news_content.update({'id': item['id']}, item, True)
+
             else:
-                self.r.lpush('vietnam_news_link_new', item['url'])
+                self.r.lpush(spider.name, item['url'])
 
         elif isinstance(item, TradeName):
             self.cursor.execute("""insert into vietnam_shopee_name(category, content) value (%s, %s)""",

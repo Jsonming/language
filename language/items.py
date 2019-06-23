@@ -20,6 +20,7 @@ class NewsLinkItem(scrapy.Item):
 
 
 class NewsContentItem(scrapy.Item):
+    id = scrapy.Field()
     url = scrapy.Field()
     content = scrapy.Field()
 
