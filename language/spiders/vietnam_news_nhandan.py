@@ -9,10 +9,10 @@ class VietnamNewsNhandanSpider(scrapy.Spider):
     allowed_domains = ['www.nhandan.org.vn']
     start_urls = [
         # 'http://www.nhandan.org.vn/chinhtri'
-        # 'http://www.nhandan.org.vn/kinhte',
+        # 'https://www.nhandan.org.vn/kinhte?p=1924',
         # "http://www.nhandan.org.vn/vanhoa",
         # "http://www.nhandan.org.vn/xahoi",
-        # "http://www.nhandan.org.vn/phapluat",
+        # "https://www.nhandan.org.vn/phapluat?p=2255",
         # "http://www.nhandan.org.vn/du-lich",
         # "https://www.nhandan.org.vn/thegioi",
         # "https://www.nhandan.org.vn/thethao"
@@ -20,8 +20,8 @@ class VietnamNewsNhandanSpider(scrapy.Spider):
         # "http://www.nhandan.org.vn/y-te",
         # "http://www.nhandan.org.vn/khoahoc-congnghe",
         # "http://www.nhandan.org.vn/bandoc",
-        # "http://www.nhandan.org.vn/hanoi",    #  这是一个特殊的列表
-        "http://www.nhandan.org.vn/tphcm",    # 跟上一个一样是一个特殊的列表
+        "http://www.nhandan.org.vn/hanoi",    #  这是一个特殊的列表
+        # "http://www.nhandan.org.vn/tphcm",    # 跟上一个一样是一个特殊的列表
     ]
 
     # redis_key = 'vietnam_news_link_new'
