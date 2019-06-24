@@ -6,8 +6,28 @@ from ..items import NewsLink
 
 class VietnamNewsVnSpider(scrapy.Spider):
     name = 'vietnam_news_vn'
-    allowed_domains = ['vnexpress.net/thoi-su']
-    start_urls = ['https://vnexpress.net/thoi-su']
+    allowed_domains = ['vnexpress.net']
+    start_urls = [
+        # 'https://vnexpress.net/thoi-su',
+
+        # 'https://vnexpress.net/the-gioi',
+        # 'https://vnexpress.net/kinh-doanh',
+        # 'https://vnexpress.net/giai-tri',
+        # 'https://vnexpress.net/the-thao',
+        # 'https://vnexpress.net/phap-luat',
+        # 'https://vnexpress.net/giao-duc',
+        # 'https://vnexpress.net/suc-khoe',
+        # 'https://vnexpress.net/doi-song',
+        # 'https://vnexpress.net/du-lich',
+        # 'https://vnexpress.net/khoa-hoc',
+        # 'https://vnexpress.net/so-hoa',
+        # 'https://vnexpress.net/oto-xe-may',
+        # 'https://vnexpress.net/y-kien',
+        # 'https://vnexpress.net/tam-su',
+        'https://vnexpress.net/cuoi',
+
+        # 'https://vnexpress.net/goc-nhin'
+    ]
 
     def parse(self, response):
         links = response.xpath('/html/body/section/section[1]/article/h4/a[1]/@href').extract()
@@ -16,12 +36,23 @@ class VietnamNewsVnSpider(scrapy.Spider):
             item = NewsLink()
             item['url'] = url
             item["ori_url"] = response.url
-            yield item
+            # yield item
+            print(item)
 
-        nest_link = response.xpath('//*[@id="pagination"]/a[@class="next"]/@href').extract()
+        nest_link = []
+        nest_link_zero = response.xpath('//*[@id="pagination"]/a[@class="next"]/@href').extract()
+        nest_link_one = response.xpath('/html/body/section[3]/section[1]/div[2]/a[last()]/@href').extract()
+        nest_link.extend(nest_link_zero)
+        nest_link.extend(nest_link_one)
+
         if nest_link:
-            next_page_url = 'https://vnexpress.net' + nest_link[0]
-            yield scrapy.Request(url=next_page_url, callback=self.parse, dont_filter=True)
+            if "https" not in nest_link[0]:
+                next_page_url = 'https://vnexpress.net' + nest_link[0]
+            else:
+                next_page_url = nest_link[0]
+            # yield scrapy.Request(url=next_page_url, callback=self.parse, dont_filter=True)
+            print(nest_link)
+            print(next_page_url)
 
     # def parse_item(self, response):
     #     description = response.xpath('//section/p/text()').extract()
