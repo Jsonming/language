@@ -36,8 +36,7 @@ class VietnamNewsVnSpider(scrapy.Spider):
             item = NewsLink()
             item['url'] = url
             item["ori_url"] = response.url
-            # yield item
-            print(item)
+            yield item
 
         nest_link = []
         nest_link_zero = response.xpath('//*[@id="pagination"]/a[@class="next"]/@href').extract()
@@ -50,9 +49,9 @@ class VietnamNewsVnSpider(scrapy.Spider):
                 next_page_url = 'https://vnexpress.net' + nest_link[0]
             else:
                 next_page_url = nest_link[0]
-            # yield scrapy.Request(url=next_page_url, callback=self.parse, dont_filter=True)
-            print(nest_link)
-            print(next_page_url)
+            yield scrapy.Request(url=next_page_url, callback=self.parse, dont_filter=True)
+            # print(nest_link)
+            # print(next_page_url)
 
     # def parse_item(self, response):
     #     description = response.xpath('//section/p/text()').extract()
