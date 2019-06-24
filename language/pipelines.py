@@ -131,14 +131,14 @@ class LanguagePipeline(object):
                     f.write(content)
         elif isinstance(item, NewsLink):
             if not item.get("url"):
-                self.r.lpush("vietnam_news_link_error", item["ori_url"])
+                self.r.lpush("link_error", item["ori_url"])
             else:
                 db_name = 'fingerprint'
                 md5_url = self.md5_(item['url'])
                 sta = self.hash_exist(db_name, md5_url)
                 if not sta:
                     self.hash_(db_name, md5_url)
-                    self.r.lpush('vietnam_news_link', item['url'])
+                    self.r.lpush(spider.name, item['url'])
                 else:
                     print("指纹重复")
         else:
