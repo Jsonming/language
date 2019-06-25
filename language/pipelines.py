@@ -138,7 +138,7 @@ class LanguagePipeline(object):
                 sta = self.hash_exist(db_name, md5_url)
                 if not sta:
                     self.hash_(db_name, md5_url)
-                    self.r.lpush(spider.name, item['url'])
+                    self.r.rpush(spider.name, item['url'])
                 else:
                     print("指纹重复")
         else:

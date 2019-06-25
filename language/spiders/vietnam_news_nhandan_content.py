@@ -7,12 +7,10 @@ from scrapy import spiders
 
 class VietnamNewsNhandanContentSpider(RedisSpider):
     name = 'vietnam_news_nhandan_content'
-    redis_key = 'vietnam_news_link'
+    redis_key = 'vietnam_news_nhandan_content'
     custom_settings = {
-        # 指定redis数据库的连接参数
         'REDIS_HOST': '47.105.132.57',
         'REDIS_PORT': 6379,
-        # 指定 redis链接密码，和使用哪一个数据库
         'REDIS_PARAMS': {
             'password': '',
             'db': 0
@@ -20,8 +18,10 @@ class VietnamNewsNhandanContentSpider(RedisSpider):
     }
 
     def parse(self, response):
-        content = response.xpath('//div/p/text()').extract()
-        content = ''.join(content)
+        con = response.xpath('//div[@class="ndcontent"]/text()').extract()
+        cont = response.xpath('//*[@id="wrapper"]/div[1]/div[3]/div/div/div[1]/div/div/text()').extract()
+        content = response.xpath('//div/p//text()').extract()
+        content = ''.join(content + cont + con)
         item = NewsContentItem()
         item['url'] = response.url
         item['content'] = content
