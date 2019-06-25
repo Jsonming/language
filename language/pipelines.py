@@ -65,7 +65,7 @@ class LanguagePipeline(object):
                 # self.connect.commit()
                 url_id = self.md5_(item['url'])
                 item["id"] = url_id
-                self.client.vietnam.vietnam_news_content.update({'id': item['id']}, item, True)
+                self.client.vietnam.vietnam_news_vn_content.update({'id': item['id']}, item, True)
 
             else:
                 self.r.lpush(spider.name, item['url'])

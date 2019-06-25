@@ -11,9 +11,9 @@ class VietnamNewsVnSpider(scrapy.Spider):
     allowed_domains = ['vnexpress.net']
     start_urls = [
         # 'https://vnexpress.net/thoi-su',
-        'https://vnexpress.net/the-gioi',
-        'https://vnexpress.net/kinh-doanh',
-        'https://vnexpress.net/giai-tri',
+        # 'https://vnexpress.net/the-gioi',
+        # 'https://vnexpress.net/kinh-doanh',
+        # 'https://vnexpress.net/giai-tri',
         # 'https://vnexpress.net/the-thao',
         # 'https://vnexpress.net/phap-luat',
         # 'https://vnexpress.net/giao-duc',
