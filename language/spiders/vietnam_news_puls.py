@@ -23,6 +23,7 @@ class VietnamNewsPulsSpider(scrapy.Spider):
         # 'https://www.vietnamplus.vn/doisong.vnp',
         # 'https://www.vietnamplus.vn/vanhoa.vnp',
         # 'https://www.vietnamplus.vn/thethao.vnp',
+
         # 'https://www.vietnamplus.vn/khoahoc.vnp',
         # 'https://www.vietnamplus.vn/congnghe.vnp',
         # 'https://www.vietnamplus.vn/otoxemay.vnp',
