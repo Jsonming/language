@@ -6,19 +6,16 @@ from ..items import NewsContentItem
 
 
 class VietnamNewsVtvContentSpider(RedisSpider):
-# class VietnamNewsVtvContentSpider(scrapy.Spider):
-
     name = 'vietnam_news_vtv_content'
     allowed_domains = ['vtv.vn']
     # start_urls = [
-        #     'https://vtv.vn/trong-nuoc/sach-gia-sach-lau-gay-hau-qua-khon-luong-20190620155150671.htm'
-        # 'https://vtv.vn/vtv8/lien-tiep-xay-ra-chay-rung-tai-phu-yen-20190628113739609.htm',
-        # 'https://vtv.vn/vtv9/lu-lut-o-trung-quoc-khien-17-nguoi-thiet-mang-20190613182044515.htm'
-        # 'https://vtv.vn/chuyen-dong-24h/thu-tuong-nhat-xin-loi-vi-bao-cao-quy-luong-huu-co-the-bi-qua-tai-khi-nguoi-gia-song-tho-20190613160839671.htm'
-        # "https://vtv.vn/magazine/ban-hang-da-kenh-la-mot-xu-the-rat-tu-nhien-khong-the-ngan-lai-duoc-20180516112626842.htm"
-
+    # 'https://vtv.vn/trong-nuoc/sach-gia-sach-lau-gay-hau-qua-khon-luong-20190620155150671.htm'
+    # 'https://vtv.vn/vtv8/lien-tiep-xay-ra-chay-rung-tai-phu-yen-20190628113739609.htm',
+    # 'https://vtv.vn/vtv9/lu-lut-o-trung-quoc-khien-17-nguoi-thiet-mang-20190613182044515.htm'
+    # 'https://vtv.vn/chuyen-dong-24h/thu-tuong-nhat-xin-loi-vi-bao-cao-quy-luong-huu-co-the-bi-qua-tai-khi-nguoi-gia-song-tho-20190613160839671.htm'
+    # "https://vtv.vn/magazine/ban-hang-da-kenh-la-mot-xu-the-rat-tu-nhien-khong-the-ngan-lai-duoc-20180516112626842.htm"
+    # "https://vtv.vn/news-20190326151103975.htm"
     # ]
-
 
     redis_key = 'vietnam_news_vtv_content'
     custom_settings = {
@@ -59,9 +56,10 @@ class VietnamNewsVtvContentSpider(RedisSpider):
             para = link.split('-')[-1]
             number = para.split('.')[0]
             if number.isdigit():
-                content_link = "https://vtv.vn" + link
-                # if content_link != response.url:
-                # yield scrapy.Request(url=content_link, callback=self.parse, dont_filter=True)
+                if 'http' not in link:
+                    content_link = "https://vtv.vn" + link
+                else:
+                    content_link = link
 
                 item = NewsLink()
                 item['url'] = content_link
