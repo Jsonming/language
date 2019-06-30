@@ -69,7 +69,7 @@ class LanguagePipeline(object):
                 self.client.vietnam.vietnam_news_vtv_content.update({'id': item['id']}, item, True)
 
             else:
-                self.r.lpush(spider.name, item['url'])
+                self.r.rpush(spider.name, item['url'])
 
         elif isinstance(item, TradeName):
             self.cursor.execute("""insert into vietnam_shopee_name(category, content) value (%s, %s)""",

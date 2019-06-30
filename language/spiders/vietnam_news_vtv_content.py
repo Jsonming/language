@@ -6,16 +6,21 @@ from ..items import NewsContentItem
 
 
 class VietnamNewsVtvContentSpider(RedisSpider):
+# class VietnamNewsVtvContentSpider(scrapy.Spider):
+
     name = 'vietnam_news_vtv_content'
     allowed_domains = ['vtv.vn']
     # start_urls = [
-    #     'https://vtv.vn/trong-nuoc/sach-gia-sach-lau-gay-hau-qua-khon-luong-20190620155150671.htm'
-    # 'https://vtv.vn/vtv8/lien-tiep-xay-ra-chay-rung-tai-phu-yen-20190628113739609.htm',
-    # 'https://vtv.vn/vtv9/lu-lut-o-trung-quoc-khien-17-nguoi-thiet-mang-20190613182044515.htm'
-    # 'https://vtv.vn/chuyen-dong-24h/thu-tuong-nhat-xin-loi-vi-bao-cao-quy-luong-huu-co-the-bi-qua-tai-khi-nguoi-gia-song-tho-20190613160839671.htm'
+        #     'https://vtv.vn/trong-nuoc/sach-gia-sach-lau-gay-hau-qua-khon-luong-20190620155150671.htm'
+        # 'https://vtv.vn/vtv8/lien-tiep-xay-ra-chay-rung-tai-phu-yen-20190628113739609.htm',
+        # 'https://vtv.vn/vtv9/lu-lut-o-trung-quoc-khien-17-nguoi-thiet-mang-20190613182044515.htm'
+        # 'https://vtv.vn/chuyen-dong-24h/thu-tuong-nhat-xin-loi-vi-bao-cao-quy-luong-huu-co-the-bi-qua-tai-khi-nguoi-gia-song-tho-20190613160839671.htm'
+        # "https://vtv.vn/magazine/ban-hang-da-kenh-la-mot-xu-the-rat-tu-nhien-khong-the-ngan-lai-duoc-20180516112626842.htm"
+
     # ]
 
-    redis_key = 'vietnam_news_vtv'
+
+    redis_key = 'vietnam_news_vtv_content'
     custom_settings = {
         'REDIS_HOST': '47.105.132.57',
         'REDIS_PORT': 6379,
@@ -32,11 +37,13 @@ class VietnamNewsVtvContentSpider(RedisSpider):
         paragrah_list = []
         paragrah = response.xpath('//div[@class="content_detail ta-justify"]//p/text()').extract()
         paragrah_one = response.xpath('//div[@data-field="body"]//p//text()').extract()
+        paragrah_two = response.xpath('//div[@class="sp-detail-content"]//p//text()').extract()
 
         paragrah_list.extend(title)
         paragrah_list.extend(title_one)
         paragrah_list.extend(paragrah)
         paragrah_list.extend(paragrah_one)
+        paragrah_list.extend(paragrah_two)
 
         content = ''.join(paragrah_list).replace('\n', '').replace('\r', '').replace('\t', '')
 
@@ -54,8 +61,10 @@ class VietnamNewsVtvContentSpider(RedisSpider):
             if number.isdigit():
                 content_link = "https://vtv.vn" + link
                 # if content_link != response.url:
-                    # yield scrapy.Request(url=content_link, callback=self.parse, dont_filter=True)
+                # yield scrapy.Request(url=content_link, callback=self.parse, dont_filter=True)
+
                 item = NewsLink()
                 item['url'] = content_link
                 item['ori_url'] = response.url
-                yield item
+                if not any([item in content_link for item in ['jpg', 'png', 'jpeg']]):
+                    yield item
