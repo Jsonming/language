@@ -2,9 +2,10 @@
 import re
 import scrapy
 from ..items import NewsLink
+from scrapy_redis.spiders import RedisSpider
 
 
-class VietnamNewsPulsSpider(scrapy.Spider):
+class VietnamNewsPulsSpider(RedisSpider):
     name = 'vietnam_news_puls'
     allowed_domains = ['www.vietnamplus.vn']
     start_urls = [
@@ -19,7 +20,7 @@ class VietnamNewsPulsSpider(scrapy.Spider):
 
         # 'https://www.vietnamplus.vn/chinhtri.vnp',
         # 'https://www.vietnamplus.vn/kinhte.vnp',
-        'https://www.vietnamplus.vn/xahoi.vnp',
+        # 'https://www.vietnamplus.vn/xahoi.vnp',
         # 'https://www.vietnamplus.vn/doisong.vnp',
         # 'https://www.vietnamplus.vn/vanhoa.vnp',
         # 'https://www.vietnamplus.vn/thethao.vnp',
@@ -38,8 +39,20 @@ class VietnamNewsPulsSpider(scrapy.Spider):
         # 'https://www.vietnamplus.vn/topicnews.vnp',
         # 'https://www.vietnamplus.vn/photo360.vnp',
         # 'https://www.vietnamplus.vn/megastory.vnp',
+        # 'https://www.vietnamplus.vn/chude/bao-so-12-gay-nhieu-thiet-hai/885.vnp',
+        "https://www.vietnamplus.vn/chude/nissanrenaultmitsubishi-va-be-boi-cua-ong-ghosn/987.vnp"
 
     ]
+
+    redis_key = 'vietnam_news_plus_content'
+    custom_settings = {
+        'REDIS_HOST': '47.105.132.57',
+        'REDIS_PORT': 6379,
+        'REDIS_PARAMS': {
+            'password': '',
+            'db': 0
+        },
+    }
 
     def parse(self, response):
         links = response.xpath('//article/h2/a/@href').extract()
@@ -57,7 +70,11 @@ class VietnamNewsPulsSpider(scrapy.Spider):
 
         last_page = response.xpath('//*[@id="mainContent_ContentList1_pager"]/ul/li[last()]/a/text()').extract()
         if current_page < int(last_page[0]):
-            nest_page = 'https://www.vietnamplus.vn/' + response.url.split('/')[3].split('.')[0] + "/trang{}.vnp".format(
-                current_page + 1)
+            if "trang" in response.url:
+                nest_para = response.url.split('/')[-1]
+                nest_page = response.url.replace(nest_para, '') + "trang{}.vnp".format(current_page + 1)
+            else:
+                nest_para = response.url.split('.')[-1]
+                nest_page = response.url.replace("."+nest_para, '/') + "trang{}.vnp".format(current_page + 1)
 
             yield scrapy.Request(url=nest_page, callback=self.parse, dont_filter=True)

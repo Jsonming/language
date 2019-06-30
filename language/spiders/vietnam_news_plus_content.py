@@ -11,7 +11,7 @@ class VietnamNewsPlusContentSpider(RedisSpider):
     #     'https://www.vietnamplus.vn/nhieu-nhan-vien-huawei-tung-lam-viec-voi-quan-doi-trung-quoc/579032.vnp',
     # ]
 
-    redis_key = 'vietnam_news_puls'
+    redis_key = 'vietnam_news_plus_content'
     custom_settings = {
         'REDIS_HOST': '47.105.132.57',
         'REDIS_PORT': 6379,
@@ -25,7 +25,7 @@ class VietnamNewsPlusContentSpider(RedisSpider):
         title = response.xpath('//h1/text()').extract()
         summery = response.xpath('//div[@class="details__summary cms-desc"]//text()').extract()
         paragraph = response.xpath('//div[@class="content article-body cms-body "]//text()').extract()
-        paragraph_one = response.xpath('//div[@class="content article-body cms-body AdAsia"]//text()').extract()
+        paragraph_one = response.xpath('//p/text()').extract()
 
         text = []
         text.extend(title)
@@ -33,7 +33,8 @@ class VietnamNewsPlusContentSpider(RedisSpider):
         text.extend(paragraph)
         text.extend(paragraph_one)
         content = ''.join(text).replace('\r\n', ' ').replace('\n', ' ')
-        item = NewsContentItem()
-        item['url'] = response.url
-        item['content'] = content
-        return item
+        if 'id' in response.url:
+            item = NewsContentItem()
+            item['url'] = response.url
+            item['content'] = content
+            return item
