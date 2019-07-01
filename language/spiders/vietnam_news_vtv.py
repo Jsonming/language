@@ -75,8 +75,21 @@ class VietnamNewsVtvSpider(scrapy.Spider):
         # 'https://vtv.vn/timeline/102/trang-61.htm',
         # 'https://vtv.vn/timeline/109/trang-57.htm',
 
-        "https://vtv.vn/trong-nuoc/xem-theo-ngay/{}.htm".format(
-            (datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(365, 10*365)
+        # "https://vtv.vn/trong-nuoc/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(365, 10*365)
+        "https://vtv.vn/kinh-te/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/viet-nam-va-the-gioi/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/viet-nam-hom-nay/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/chuyen-dong-24h/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/the-gioi/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/doi-song/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/goc-khan-gia/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/truyen-hinh/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/van-hoa-giai-tri/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/viet-nam-hom-nay/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/doi-song/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/giao-duc/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/cong-nghe/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/goc-khan-gia/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
     ]
 
     def parse(self, response):
