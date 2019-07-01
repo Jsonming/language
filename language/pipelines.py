@@ -15,6 +15,9 @@ from pymongo import MongoClient
 
 from .items import IndonesiaNewsContentItem, ShortWordLink, ImgLink, NewsLink
 from .items import NewsLinkItem, NewsContentItem, TradeName, SongName, MovieName, KoreanNewsContentItem
+from language.spiders.vietnam_news_vtv_content import VietnamNewsVtvContentSpider
+from language.spiders.vietnam_news_thanhnien_content import VietnamNewsThanhnienContentSpider
+
 
 
 class LanguagePipeline(object):
@@ -65,12 +68,14 @@ class LanguagePipeline(object):
                 # self.connect.commit()
                 url_id = self.md5_(item['url'])
                 item["id"] = url_id
-
-                self.client.vietnam.vietnam_news_vtv_content.update({'id': item['id']}, item, True)
+                if isinstance(spider, VietnamNewsVtvContentSpider):
+                    self.client.vietnam.vietnam_news_vtv_content.update({'id': item['id']}, item, True)
+                elif isinstance(spider, VietnamNewsThanhnienContentSpider):
+                    self.client.vietnam.vietnam_news_thanhnien_content.update({'id': item['id']}, item, True)
 
             else:
-                # self.r.rpush(spider.name, item['url'])
-                pass
+                self.r.rpush(spider.name, item['url'])
+
         elif isinstance(item, TradeName):
             self.cursor.execute("""insert into vietnam_shopee_name(category, content) value (%s, %s)""",
                                 (item['category'], item['content']))
