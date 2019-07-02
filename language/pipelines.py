@@ -72,7 +72,6 @@ class LanguagePipeline(object):
                     self.client.vietnam.vietnam_news_vtv_content.update({'id': item['id']}, item, True)
                 elif isinstance(spider, VietnamNewsThanhnienContentSpider):
                     self.client.vietnam.vietnam_news_thanhnien_content.update({'id': item['id']}, item, True)
-
             else:
                 self.r.rpush(spider.name, item['url'])
 

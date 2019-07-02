@@ -12,7 +12,7 @@ class VietnamNewsThanhnienContentSpider(RedisSpider):
         'https://thanhnien.vn/thoi-su/an-mang-dau-long-chong-giet-vo-truoc-mat-con-gai-vua-rut-don-ly-di-1098127.html'
     ]
 
-    redis_key = 'vietnam_news_thanhnien'
+    redis_key = 'vietnam_news_thanhnien_content'
     custom_settings = {
         'REDIS_HOST': '47.105.132.57',
         'REDIS_PORT': 6379,
@@ -33,26 +33,26 @@ class VietnamNewsThanhnienContentSpider(RedisSpider):
         paragrah_list.extend(paragrah)
 
         content = ''.join(paragrah_list).replace('\n', '').replace('\r', '').replace('\t', '')
+        if not any([it in response.url for it in ['vtv', 'video', "embed2"]]):
+            item = NewsContentItem()
+            item['url'] = response.url
+            item['content'] = content
+            yield item
 
-        item = NewsContentItem()
-        item['url'] = response.url
-        item['content'] = content
-        yield item
+            # 提取正文中的链接
+            content_links = response.xpath('//a/@href').extract()
+            content_links = list(set(content_links))
+            for link in content_links:
+                para = link.split('-')[-1]
+                number = para.split('.')[0]
+                if number.isdigit():
+                    if 'http' not in link:
+                        content_link = "https://vtv.vn" + link
+                    else:
+                        content_link = link
 
-        # 提取正文中的链接
-        content_links = response.xpath('//a/@href').extract()
-        content_links = list(set(content_links))
-        for link in content_links:
-            para = link.split('-')[-1]
-            number = para.split('.')[0]
-            if number.isdigit():
-                if 'http' not in link:
-                    content_link = "https://vtv.vn" + link
-                else:
-                    content_link = link
-
-                item = NewsLink()
-                item['url'] = content_link
-                item['ori_url'] = response.url
-                if not any([item in content_link for item in ['jpg', 'png', 'jpeg']]):
-                    yield item
+                    item = NewsLink()
+                    item['url'] = content_link
+                    item['ori_url'] = response.url
+                    if not any([item in content_link for item in ['jpg', 'png', 'jpeg']]):
+                        yield item
