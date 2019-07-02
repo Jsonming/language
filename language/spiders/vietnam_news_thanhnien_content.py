@@ -40,19 +40,19 @@ class VietnamNewsThanhnienContentSpider(RedisSpider):
             yield item
 
             # 提取正文中的链接
-            content_links = response.xpath('//a/@href').extract()
-            content_links = list(set(content_links))
-            for link in content_links:
-                para = link.split('-')[-1]
-                number = para.split('.')[0]
-                if number.isdigit():
-                    if 'http' not in link:
-                        content_link = "https://vtv.vn" + link
-                    else:
-                        content_link = link
-
-                    item = NewsLink()
-                    item['url'] = content_link
-                    item['ori_url'] = response.url
-                    if not any([item in content_link for item in ['jpg', 'png', 'jpeg']]):
-                        yield item
+            # content_links = response.xpath('//a/@href').extract()
+            # content_links = list(set(content_links))
+            # for link in content_links:
+            #     para = link.split('-')[-1]
+            #     number = para.split('.')[0]
+            #     if number.isdigit():
+            #         if 'http' not in link:
+            #             content_link = "https://vtv.vn" + link
+            #         else:
+            #             content_link = link
+            #
+            #         item = NewsLink()
+            #         item['url'] = content_link
+            #         item['ori_url'] = response.url
+            #         if not any([item in content_link for item in ['jpg', 'png', 'jpeg']]):
+            #             yield item
