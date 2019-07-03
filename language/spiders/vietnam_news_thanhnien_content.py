@@ -29,11 +29,14 @@ class VietnamNewsThanhnienContentSpider(RedisSpider):
 
         paragrah = response.xpath('//div[@class="cms-body detail"]/div/text()').extract()
         paragrah_one = response.xpath('//p[@class="paragraph"]/text()').extract()
+        paragrah_two = response.xpath('//div[@class="article-body cms-body AdAsia"]//text()').extract()
+
         paragrah_list = []
         paragrah_list.extend(title)
         paragrah_list.extend(model)
         paragrah_list.extend(paragrah)
         paragrah_list.extend(paragrah_one)
+        paragrah_list.extend(paragrah_two)
 
         content = ''.join(paragrah_list).replace('\n', '').replace('\r', '').replace('\t', '')
         if not any([it in response.url for it in ['vtv', 'video', "embed2"]]):
