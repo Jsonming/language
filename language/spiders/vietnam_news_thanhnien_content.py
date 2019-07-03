@@ -9,7 +9,8 @@ class VietnamNewsThanhnienContentSpider(RedisSpider):
     name = 'vietnam_news_thanhnien_content'
     allowed_domains = ['thanhnien.vn']
     start_urls = [
-        'https://thanhnien.vn/thoi-su/an-mang-dau-long-chong-giet-vo-truoc-mat-con-gai-vua-rut-don-ly-di-1098127.html'
+        # 'https://thanhnien.vn/thoi-su/an-mang-dau-long-chong-giet-vo-truoc-mat-con-gai-vua-rut-don-ly-di-1098127.html',
+        "https://thanhnien.vn/thoi-su/moi-mon-40-nam-oan-khuat-noi-dau-con-mai-1024801.html"
     ]
 
     redis_key = 'vietnam_news_thanhnien_content'
@@ -27,10 +28,12 @@ class VietnamNewsThanhnienContentSpider(RedisSpider):
         model = response.xpath('//div[class="sapo"]//text()').extract()
 
         paragrah = response.xpath('//div[@class="cms-body detail"]/div/text()').extract()
+        paragrah_one = response.xpath('//p[@class="paragraph"]/text()').extract()
         paragrah_list = []
         paragrah_list.extend(title)
         paragrah_list.extend(model)
         paragrah_list.extend(paragrah)
+        paragrah_list.extend(paragrah_one)
 
         content = ''.join(paragrah_list).replace('\n', '').replace('\r', '').replace('\t', '')
         if not any([it in response.url for it in ['vtv', 'video', "embed2"]]):
