@@ -76,8 +76,8 @@ class VietnamNewsVtvSpider(scrapy.Spider):
         # 'https://vtv.vn/timeline/109/trang-57.htm',
 
         # "https://vtv.vn/trong-nuoc/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(365, 10*365)
-        "https://vtv.vn/kinh-te/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
-        # "https://vtv.vn/viet-nam-va-the-gioi/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "https://vtv.vn/kinh-te/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        "https://vtv.vn/viet-nam-va-the-gioi/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # "https://vtv.vn/viet-nam-hom-nay/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # "https://vtv.vn/chuyen-dong-24h/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # "https://vtv.vn/the-gioi/xem-theo-ngay/{}.htm".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)

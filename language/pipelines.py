@@ -17,6 +17,7 @@ from .items import IndonesiaNewsContentItem, ShortWordLink, ImgLink, NewsLink
 from .items import NewsLinkItem, NewsContentItem, TradeName, SongName, MovieName, KoreanNewsContentItem
 from language.spiders.vietnam_news_vtv_content import VietnamNewsVtvContentSpider
 from language.spiders.vietnam_news_thanhnien_content import VietnamNewsThanhnienContentSpider
+from language.spiders.vietnam_news_dang_content import VietnamNewsDangContentSpider
 
 
 
@@ -72,6 +73,8 @@ class LanguagePipeline(object):
                     self.client.vietnam.vietnam_news_vtv_content.update({'id': item['id']}, item, True)
                 elif isinstance(spider, VietnamNewsThanhnienContentSpider):
                     self.client.vietnam.vietnam_news_thanhnien_content.update({'id': item['id']}, item, True)
+                elif isinstance(spider, VietnamNewsDangContentSpider):
+                    self.client.vietnam.vietnam_news_dang_content.update({'id': item['id']}, item, True)
             else:
                 self.r.rpush(spider.name, item['url'])
 
