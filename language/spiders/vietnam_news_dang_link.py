@@ -7,13 +7,13 @@ class VietnamNewsDangLinkSpider(scrapy.Spider):
     name = 'vietnam_news_dang_link'
     allowed_domains = ['www.dangcongsan.vn']
     start_urls = [
-        'http://www.dangcongsan.vn/thoi-su.html?page=1099',
-        "http://www.dangcongsan.vn/lanh-dao-dang-nha-nuoc.html",
-        "http://www.dangcongsan.vn/xay-dung-dang.html",
-        "http://www.dangcongsan.vn/tu-tuong-van-hoa.html",
-        "http://www.dangcongsan.vn/kinh-te.html",
-        "http://www.dangcongsan.vn/xa-hoi.html",
-        "http://www.dangcongsan.vn/khoa-giao.html",
+        #'http://www.dangcongsan.vn/thoi-su.html?page=1099',
+        #"http://www.dangcongsan.vn/lanh-dao-dang-nha-nuoc.html",
+        #"http://www.dangcongsan.vn/xay-dung-dang.html",
+        #"http://www.dangcongsan.vn/tu-tuong-van-hoa.html",
+        #"http://www.dangcongsan.vn/kinh-te.html",
+        #"http://www.dangcongsan.vn/xa-hoi.html",
+        #"http://www.dangcongsan.vn/khoa-giao.html",
         # "http://www.dangcongsan.vn/xa-hoi.html",
         # "http://www.dangcongsan.vn/khoa-giao.html",
         # "http://www.dangcongsan.vn/phap-luat.html",
@@ -21,24 +21,24 @@ class VietnamNewsDangLinkSpider(scrapy.Spider):
         # "http://www.dangcongsan.vn/the-thao.html",
         # "http://www.dangcongsan.vn/bien-dao-viet-nam.html",
         # "http://www.dangcongsan.vn/doi-ngoai.html",
-        #
+        
         # "http://www.dangcongsan.vn/the-gioi.html",
         # "http://www.dangcongsan.vn/the-gioi/tin-tuc.html",
         # "http://www.dangcongsan.vn/the-gioi/the-gioi-noi-ve-viet-nam.html",
         # "http://www.dangcongsan.vn/nguoi-viet-nam-o-nuoc-ngoai.html",
         # "http://www.dangcongsan.vn/the-gioi/nhung-van-de-toan-cau.html",
-        #
+        
         # "http://www.dangcongsan.vn/ban-doc.html",
         # "http://www.dangcongsan.vn/ban-doc/dieu-tra-theo-don-thu.html",
         # "http://www.dangcongsan.vn/ban-doc/hoi-dap.html",
         # "http://www.dangcongsan.vn/ban-doc/hop-thu-ban-doc.html",
-        #
-        # "http://www.dangcongsan.vn/hoc-va-lam-theo-bac.html",
-        # "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/van-kien-tu-lieu.html",
-        # "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/tin-hoat-dong.html",
-        # "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/thong-tin-ve-cuoc-thi.html",
-        # "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/45-nam-thuc-hien-di-chuc-cua-chu-tich-ho-chi-minh.html",
-        #
+        
+         "http://www.dangcongsan.vn/hoc-va-lam-theo-bac.html",
+         "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/van-kien-tu-lieu.html",
+         "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/tin-hoat-dong.html",
+         "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/thong-tin-ve-cuoc-thi.html",
+         "http://www.dangcongsan.vn/hoc-va-lam-theo-bac/45-nam-thuc-hien-di-chuc-cua-chu-tich-ho-chi-minh.html",
+        
         # "http://www.dangcongsan.vn/doi-ngoai.html",
         # "http://www.dangcongsan.vn/dau-tranh-chong-quan-diem-sai-trai.html",
         # "http://www.dangcongsan.vn/chong-quan-lieu-tham-nhung-lang-phi.html",
