@@ -9,7 +9,7 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
     name = 'vietnam_news_ken_link'
     allowed_domains = ['kenh14.vn']
     start_urls = [
-        # 'http://kenh14.vn/star/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        'http://kenh14.vn/star/{}.chn'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # 'http://kenh14.vn/tv-show/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # 'http://kenh14.vn/cine/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # 'http://kenh14.vn/musik/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
@@ -79,7 +79,7 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
         # 'http://kenh14.vn/nhom-chu-de/live-green/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # 'http://kenh14.vn/adv/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
 
-        "http://kenh14.vn/timeline/laytinmoitronglist-2217-2-1-1-1-1-1-0-3-1.chn"
+        # "http://kenh14.vn/timeline/laytinmoitronglist-2217-2-1-1-1-1-1-0-3-1.chn"
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-1-1.chn".format(i) for i in range(1, 200)
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-2-1.chn".format(i) for i in range(1, 200)
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-3-1.chn".format(i) for i in range(1, 200)
@@ -87,21 +87,29 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        resp = json.loads(response.text)
-        data = resp.get("data")
-        if data:
-            html = etree.HTML(data)
-            links = html.xpath("//a/@href")
-            links = list(set(links))
-            urls = ["http://kenh14.vn" + item for item in links if "http" not in item]
-            for url in urls:
-                item = NewsLink()
-                item['url'] = url
-                item['ori_url'] = response.url
-                yield item
+        # resp = json.loads(response.text)
+        # data = resp.get("data")
+        # if data:
+        #     html = etree.HTML(data)
+        #     links = html.xpath("//a/@href")
+        #     links = list(set(links))
+        #     urls = ["http://kenh14.vn" + item for item in links if "http" not in item]
+        #     for url in urls:
+        #         item = NewsLink()
+        #         item['url'] = url
+        #         item['ori_url'] = response.url
+        #         yield item
+        #
+        #     nest_base_url = response.url.split("-")[0]
+        #     param = response.url.split("-")[2:]
+        #     next_page = int(response.url.split("-")[1]) + 1
+        #     next_url = nest_base_url + "-" + "-".join([str(next_page)] + param)
+        #     yield scrapy.Request(url=next_url, callback=self.parse, dont_filter=True)
 
-            nest_base_url = response.url.split("-")[0]
-            param = response.url.split("-")[2:]
-            next_page = int(response.url.split("-")[1]) + 1
-            next_url = nest_base_url + "-" + "-".join([str(next_page)] + param)
-            yield scrapy.Request(url=next_url, callback=self.parse, dont_filter=True)
+        links = response.xpath('//h3[@class="knswli-title"]/a/@href').extract()
+        urls = ["http://kenh14.vn" + item for item in links if "http" not in item]
+        for url in urls:
+            item = NewsLink()
+            item['url'] = url
+            item['ori_url'] = response.url
+            yield item
