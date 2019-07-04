@@ -113,3 +113,11 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
             item['url'] = url
             item['ori_url'] = response.url
             yield item
+
+        next_page = response.xpath('//li[@class="next-page"]/a/@href').extract()
+        if next_page:
+            if "http" not in next_page:
+                page_url = "http://kenh14.vn" + next_page[0]
+            else:
+                page_url = next_page[0]
+            yield scrapy.Request(url=page_url, callback=self.parse, dont_filter=True)
