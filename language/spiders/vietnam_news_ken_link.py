@@ -79,11 +79,11 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
         # 'http://kenh14.vn/nhom-chu-de/live-green/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # 'http://kenh14.vn/adv/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
 
-        # "http://kenh14.vn/timeline/laytinmoitronglist-813-2-1-1-1-1-1-0-3-1.chn"
+        "http://kenh14.vn/timeline/laytinmoitronglist-2217-2-1-1-1-1-1-0-3-1.chn"
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-1-1.chn".format(i) for i in range(1, 200)
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-2-1.chn".format(i) for i in range(1, 200)
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-3-1.chn".format(i) for i in range(1, 200)
-        "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-4-1.chn".format(i) for i in range(1, 200)
+        # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-4-1.chn".format(i) for i in range(1, 200)
     ]
 
     def parse(self, response):

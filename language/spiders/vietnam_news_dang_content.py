@@ -8,8 +8,7 @@ class VietnamNewsDangContentSpider(RedisSpider):
     name = 'vietnam_news_dang_content'
     allowed_domains = ['www.dangcongsan.vn']
     start_urls = [
-        'http://dangcongsan.vn/thoi-su/thu-tuong-ket-thuc-chuyen-tham-du-hoi-nghi-thuong-dinh-g20-va-tham-chinh-thuc-nhat-ban-527205.html',
-        "http://dangcongsan.vn/khoa-giao/bao-so-2-gay-mua-lon-huong-vao-quang-ninh-hai-phong-527352.html"
+        'http://www.dangcongsan.vn/quoc-phong-an-ninh/danh-gia-dung-thuc-chat-trinh-do-chuyen-mon-ky-thuat-mat-ma-527461.html',
     ]
 
     redis_key = 'vietnam_news_dang_link'
@@ -24,9 +23,8 @@ class VietnamNewsDangContentSpider(RedisSpider):
 
     def parse(self, response):
         content = []
-        title = response.xpath('//h1/text()').extract()
-        content.extend(title)
-        content.extend(response.xpath('//div[@class="post-content"]//p/text()').extract())
+        content.extend(response.xpath('//div[@class="post-content"]//p//text()').extract())
+        content.extend(response.xpath('//div[@class="post-content"]//span//text()').extract())
 
         content = ''.join(content).replace('\n', '').replace('\r', '').replace('\t', '')
         item = NewsContentItem()
