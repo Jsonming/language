@@ -10,7 +10,7 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
     name = 'vietnam_news_ken_link'
     allowed_domains = ['kenh14.vn']
     start_urls = [
-        "http://kenh14.vn/star/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
+        # "http://kenh14.vn/star/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # "http://kenh14.vn/tv-show/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # "http://kenh14.vn/cine/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
         # "http://kenh14.vn/musik/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(0, 6 * 365)
