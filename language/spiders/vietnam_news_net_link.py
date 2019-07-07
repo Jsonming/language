@@ -45,7 +45,7 @@ class VietnamNewsNetLinkSpider(scrapy.Spider):
         # 'https://vietnamnet.vn/',
         # 'https://vietnamnet.vn/vn/thoi-su/chinh-tri/',
         # 'https://vietnamnet.vn/jsx/loadmore/?domain=desktop&c=thoi-su-chinh-tri&p=1&s=15&a=5',
-        'https://vietnamnet.vn/jsx/loadmore/?domain=desktop&c={}&p=1&s=15&a=5'.format(item) for item in s_c
+        'https://vietnamnet.vn/jsx/loadmore/?domain=desktop&c={}&p=1&s=15&a=5'.format(item) for item in b
     ]
 
     def parse(self, response):

@@ -19,7 +19,7 @@ from language.spiders.vietnam_news_vtv_content import VietnamNewsVtvContentSpide
 from language.spiders.vietnam_news_thanhnien_content import VietnamNewsThanhnienContentSpider
 from language.spiders.vietnam_news_dang_content import VietnamNewsDangContentSpider
 from language.spiders.vietnam_news_ken_content import VietnamNewsKenContentSpider
-
+from language.spiders.vietnam_news_net_content import VietnamNewsNetContentSpider
 
 class LanguagePipeline(object):
     def __init__(self):
@@ -77,7 +77,8 @@ class LanguagePipeline(object):
                     self.client.vietnam.vietnam_news_dang_content.update({'id': item['id']}, item, True)
                 elif isinstance(spider, VietnamNewsKenContentSpider):
                     self.client.vietnam.vietnam_news_ken_content.update({'id': item['id']}, item, True)
-
+                elif isinstance(spider, VietnamNewsNetContentSpider):
+                    self.client.vietnam.vietnam_news_net_content.update({'id': item['id']}, item, True)
             else:
                 self.r.rpush(spider.name, item['url'])
 
