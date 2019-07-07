@@ -23,7 +23,7 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
         # "http://kenh14.vn/hoc-duong/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/doi-song/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/doi-song/nhan-vat/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
-        "http://kenh14.vn/xem-an-choi/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
+        # "http://kenh14.vn/xem-an-choi/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/doi-song/tram-yeu/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/beauty-fashion/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/beauty-fashion/skincare/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
@@ -78,7 +78,7 @@ class VietnamNewsKenLinkSpider(scrapy.Spider):
         # "http://kenh14.vn/nhom-chu-de/photo-story/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/nhom-chu-de/hanh-trinh-wechoice-2018/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
         # "http://kenh14.vn/nhom-chu-de/live-green/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
-        # "http://kenh14.vn/adv/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
+        "http://kenh14.vn/adv/{}.chn".format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(6*365, 10*365)
 
         # "http://kenh14.vn/timeline/laytinmoitronglist-2217-2-1-1-1-1-1-0-3-1.chn"
         # "http://kenh14.vn/timeline/laytinmoitronglist-1-2-1-1-1-1-{}-0-1-1.chn".format(i) for i in range(1, 200)
