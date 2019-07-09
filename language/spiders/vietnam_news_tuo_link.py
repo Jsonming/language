@@ -11,25 +11,11 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
     allowed_domains = ['tuoitre.vn']
     start_urls = [
         # 'https://tuoitre.vn/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        'https://tuoitre.vn/thoi-su/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/the-gioi/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/phap-luat/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/kinh-doanh/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/xe/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/nhip-song-tre/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/van-hoa/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/giai-tri/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/giao-duc/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/khoa-hoc/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/suc-khoe/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/gia-that/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/ban-doc-lam-bao/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/media/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/thoi-su/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/the-gioi/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/phap-luat/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/kinh-doanh/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
-        # 'https://tuoitre.vn/xe/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
+        # 'https://tu:oitre.vn/xe/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/nhip-song-tre/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/van-hoa/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/giai-tri/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
@@ -39,16 +25,12 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
         # 'https://tuoitre.vn/gia-that/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
         # 'https://tuoitre.vn/ban-doc-lam-bao/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
 
-        # 'https://congnghe.tuoitre.vn',
-        # 'https://congnghe.tuoitre.vn/timeline/200029/trang-1.htm',
-        # 'https://dulich.tuoitre.vn',
-        # 'https://dulich.tuoitre.vn/timeline/home-page-1.htm'
-        # 'https://congnghe.tuoitre.vn',
-        # 'https://congnghe.tuoitre.vn/timeline/200029/trang-1.htm'
-        # 'https://thethao.tuoitre.vn',
-        # 'https://thethao.tuoitre.vn/timeline/1209/trang-2.htm'
-        # 'https://dulich.tuoitre.vn',
-        # 'https://dulich.tuoitre.vn/timeline/home-page-2.htm'
+
+        # 'https://congnghe.tuoitre/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
+        # 'https://dulich.tuoitre/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
+        # 'https://congnghe.tuoitre/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
+        # 'https://thethao.tuoitre/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
+        # 'https://dulich.tuoitre/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(10*365)
 
     ]
 
