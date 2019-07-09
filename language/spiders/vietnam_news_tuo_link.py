@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import pprint
+import datetime
 import re
 from language.items import NewsLink
 
@@ -9,7 +10,8 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
     name = 'vietnam_news_tuo_link'
     allowed_domains = ['tuoitre.vn']
     start_urls = [
-        # 'https://tuoitre.vn/tin-moi-nhat.htm'
+        # 'https://tuoitre.vn
+        'https://tuoitre.vn/xem-theo-ngay/{}.htm'.format((datetime.datetime.today() + datetime.timedelta(days=-i)).strftime("%d-%m-%Y")) for i in range(365)
         # 'https://tuoitre.vn/thoi-su.htm',
         # 'https://tuoitre.vn/the-gioi.htm',
         # 'https://tuoitre.vn/phap-luat.htm',
@@ -40,11 +42,8 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
 
         # 'https://congnghe.tuoitre.vn',
         # 'https://congnghe.tuoitre.vn/timeline/200029/trang-1.htm',
-        # 'https://thethao.tuoitre.vn',
-        # 'https://thethao.tuoitre.vn/timeline/1209/trang-1.htm'
-        # 'https://thethao.tuoitre.vn/timeline/1209/trang-287.htm'
         # 'https://dulich.tuoitre.vn',
-        'https://dulich.tuoitre.vn/timeline/home-page-1.htm'
+        # 'https://dulich.tuoitre.vn/timeline/home-page-1.htm'
         # 'https://congnghe.tuoitre.vn',
         # 'https://congnghe.tuoitre.vn/timeline/200029/trang-1.htm'
         # 'https://thethao.tuoitre.vn',
