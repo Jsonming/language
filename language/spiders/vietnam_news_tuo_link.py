@@ -9,6 +9,7 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
     name = 'vietnam_news_tuo_link'
     allowed_domains = ['tuoitre.vn']
     start_urls = [
+        # 'https://tuoitre.vn/tin-moi-nhat.htm'
         # 'https://tuoitre.vn/thoi-su.htm',
         # 'https://tuoitre.vn/the-gioi.htm',
         # 'https://tuoitre.vn/phap-luat.htm',
@@ -22,7 +23,6 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
         # 'https://tuoitre.vn/suc-khoe.htm',
         # 'https://tuoitre.vn/gia-that.htm',
         # 'https://tuoitre.vn/ban-doc-lam-bao.htm',
-
         # 'https://tuoitre.vn/media.htm',
         # 'https://tuoitre.vn/thoi-su.htm',
         # 'https://tuoitre.vn/the-gioi.htm',
@@ -38,12 +38,19 @@ class VietnamNewsTuoLinkSpider(scrapy.Spider):
         # 'https://tuoitre.vn/gia-that.htm',
         # 'https://tuoitre.vn/ban-doc-lam-bao.htm',
 
-        'https://congnghe.tuoitre.vn',
-        'https://thethao.tuoitre.vn',
-        'https://dulich.tuoitre.vn',
-        'https://congnghe.tuoitre.vn',
-        'https://thethao.tuoitre.vn',
-        'https://dulich.tuoitre.vn',
+        # 'https://congnghe.tuoitre.vn',
+        # 'https://congnghe.tuoitre.vn/timeline/200029/trang-1.htm',
+        # 'https://thethao.tuoitre.vn',
+        # 'https://thethao.tuoitre.vn/timeline/1209/trang-1.htm'
+        'https://thethao.tuoitre.vn/timeline/1209/trang-287.htm'
+        # 'https://dulich.tuoitre.vn',
+        # 'https://dulich.tuoitre.vn/timeline/home-page-7.htm'
+        # 'https://congnghe.tuoitre.vn',
+        # 'https://congnghe.tuoitre.vn/timeline/200029/trang-1.htm'
+        # 'https://thethao.tuoitre.vn',
+        # 'https://thethao.tuoitre.vn/timeline/1209/trang-2.htm'
+        # 'https://dulich.tuoitre.vn',
+        # 'https://dulich.tuoitre.vn/timeline/home-page-2.htm'
 
     ]
 
