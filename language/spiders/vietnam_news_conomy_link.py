@@ -16,7 +16,7 @@ class VietnamNewsConomyLinkSpider(scrapy.Spider):
         # 'http://vneconomy.vn/thi-truong.htm',
         # 'http://vneconomy.vn/the-gioi.htm',
         # 'http://vneconomy.vn/cuoc-song-so.htm',
-        # 'http://vneconomy.vn/xe-360.htm',
+        'http://vneconomy.vn/xe-360.htm',
 
         'http://vneconomy.vn/timeline/9920/trang-1.htm',
 
