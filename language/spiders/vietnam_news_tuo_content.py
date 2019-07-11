@@ -15,7 +15,7 @@ class VietnamNewsTuoContentSpider(RedisSpider):
         'https://tuoitre.vn/de-nghi-bac-tat-ca-khang-cao-vu-that-thoat-3-608-ti-o-ngan-hang-dong-a-20190529092940243.htm'
     ]
 
-    redis_key = 'vietnam_news_tuo_content'
+    redis_key = 'vietnam_news_tuo_link'
     custom_settings = {
         'REDIS_HOST': '47.105.132.57',
         'REDIS_PORT': 6379,
